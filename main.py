@@ -1,7 +1,7 @@
 from Notion import Notion
 from GoogleCalendar import GoogleCalendar
 import os
-from datetime import datetime
+from datetime import datetime, timedelta
 
 googleCalendarId = os.environ['GOOGLE_CALENDAR_ID']  # usually it would be an email
 googleServiceAccountFile = 'svc.json'  # define filename from where get google calendar svc credentials

@@ -29,6 +29,7 @@ class GoogleCalendar(object):
     #  get all google calendar events from now
     def get_event_list(self, calendarId) -> list:
         now = datetime.utcnow().isoformat() + 'Z'
+        print(now)
         print('Getting the upcoming events')
         print(' ')
         events_result = self.service.events().list(calendarId=calendarId,

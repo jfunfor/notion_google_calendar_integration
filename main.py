@@ -22,7 +22,7 @@ notion_query_template = {  # filter query which is sent to notion api and is got
 notion_client = Notion(notion_token)
 google_client = GoogleCalendar(googleServiceAccountFile, googleCalendarScopes)
 
-print("today date by random github server opinion: ", datetime.today().strftime('%Y-%m-%d'))
+print("today date by random github server opinion: ", datetime.today())
 
 # get events from google calendar
 google_calendar_events = google_client.get_event_list(googleCalendarId)

@@ -13,7 +13,7 @@ notion_query_template = {  # filter query which is sent to notion api and is got
     'filter': {
         'property': 'Date',
         'date': {
-            'on_or_after': f"{datetime.today().strftime('%Y-%m-%d')}"
+            'on_or_after': f"{datetime.today()}"
         },
     },
 }

@@ -1,6 +1,7 @@
 from Notion import Notion
 from GoogleCalendar import GoogleCalendar
 import os
+from datetime import datetime
 
 googleCalendarId = os.environ['GOOGLE_CALENDAR_ID']  # usually it would be an email
 googleServiceAccountFile = 'svc.json'  # define filename from where get google calendar svc credentials
@@ -12,7 +13,7 @@ notion_query_template = {  # filter query which is sent to notion api and is got
     'filter': {
         'property': 'Date',
         'date': {
-            'next_month': {}
+            'on_or_after': f'{datetime.today().strftime('%Y-%m-%d')}'
         },
     },
 }

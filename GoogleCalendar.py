@@ -55,7 +55,6 @@ class GoogleCalendar(object):
         e = self.service.events().insert(calendarId=calendarId,
                                          body=event).execute()
         print('Event created in Google calendar with id: %s' % (e.get('id')))
-        print('event body:', event)
 
     def delete_event(self, eventId, calendarId):
         self.service.events().delete(calendarId=calendarId,

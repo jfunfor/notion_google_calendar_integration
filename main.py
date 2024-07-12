@@ -48,9 +48,9 @@ for notion_item in notion_items:
                                                           notion_item['id'],
                                                           notion_item['start_date'],
                                                           notion_item['end_date'])
-        print()
+        print(' ')
         google_client.create_event(google_event_dict, googleCalendarId)
     else:
-        print()
+        print(' ')
         print(f"Event equals to google event description! \n'{notion_item['name']}' with notion id "
               f"'{notion_item['id']}' in da house😎. ")

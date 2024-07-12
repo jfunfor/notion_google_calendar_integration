@@ -30,6 +30,7 @@ class GoogleCalendar(object):
     def get_event_list(self, calendarId) -> list:
         now = datetime.utcnow().isoformat() + 'Z'
         print('Getting the upcoming events')
+        print(' ')
         events_result = self.service.events().list(calendarId=calendarId,
                                                    timeMin=now, singleEvents=True,
                                                    orderBy='startTime').execute()

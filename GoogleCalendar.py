@@ -42,11 +42,11 @@ class GoogleCalendar(object):
         result_list = []
         for event in events:
             result_list.append({
-                "start_date": event["start"]["dateTime"],
-                "end_date": event["end"]["dateTime"],
-                "name": event["summary"],
-                "description": event["description"],
-                "id": event["id"]
+                'start_date': event['start']['dateTime'],
+                'end_date': event['end']['dateTime'],
+                'name': event['summary'],
+                'description': event['description'],
+                'id': event['id']
             })
         return result_list
 

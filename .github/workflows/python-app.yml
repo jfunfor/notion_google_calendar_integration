@@ -4,7 +4,7 @@
 name: Python application
 on:
   schedule:
-    - cron: '* * * * *'
+    - cron: '*/30 * * * *'
   push:
   pull_request:
 

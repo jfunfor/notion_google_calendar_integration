@@ -64,4 +64,4 @@ for notion_item in notion_items:
     else:
         print(' ')
         print(f"Notion event id equals to google event description!😬 Look at details below: "
-              f"\n id: '{notion_item['id']}'. ")
+              f"\n notion id: '{notion_item['id']}'. ")

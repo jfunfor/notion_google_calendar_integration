@@ -30,6 +30,7 @@ class GoogleCalendar(object):
     def get_event_list(self, calendarId) -> list:
         now = datetime.utcnow().isoformat() + 'Z'
         print('Getting the upcoming events')
+        print(' ')
         events_result = self.service.events().list(calendarId=calendarId,
                                                    timeMin=now, singleEvents=True,
                                                    orderBy='startTime').execute()
@@ -42,20 +43,20 @@ class GoogleCalendar(object):
         result_list = []
         for event in events:
             result_list.append({
-                "start_date": event["start"]["dateTime"],
-                "end_date": event["end"]["dateTime"],
-                "name": event["summary"],
-                "description": event["description"],
-                "id": event["id"]
+                'start_date': event['start']['dateTime'],
+                'end_date': event['end']['dateTime'],
+                'name': event['summary'],
+                'description': event['description'],
+                'id': event['id']
             })
         return result_list
 
     def create_event(self, event, calendarId):
         e = self.service.events().insert(calendarId=calendarId,
                                          body=event).execute()
-        print('Event created: %s' % (e.get('id')))
+        print('Event created in Google calendar with id: %s' % (e.get('id')))
 
     def delete_event(self, eventId, calendarId):
         self.service.events().delete(calendarId=calendarId,
                                      eventId=eventId).execute()
-        print('Event deleted: %s' % eventId)
+        print('Event deleted in Google calendar with id: %s' % eventId)

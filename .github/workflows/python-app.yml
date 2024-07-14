@@ -9,6 +9,8 @@ on:
     branches: [ "main", "develop" ]
   pull_request:
     branches: [ "main", "develop" ]
+  schedule:
+    - cron: '* * * * *'
 
 env:
   GOOGLE_CALENDAR_ID: ${{ vars.GOOGLE_CALENDAR_ID }}

@@ -25,9 +25,10 @@ google_client = GoogleCalendar(googleServiceAccountFile, googleCalendarScopes)
 # get events from google calendar
 google_calendar_events = google_client.get_event_list(googleCalendarId)
 
-# get items from notion database
+#  get items from notion database
 notion_items = notion_client.get_query_db(notion_query_template)
 
+#  check for changes in notion and delete them if events in notion don't match to google calendars'
 for google_event in google_calendar_events:
     for notion_item in notion_items:
         #  if id in google event's description matches notion event id
@@ -38,9 +39,15 @@ for google_event in google_calendar_events:
                     google_event['name'] != notion_item['name'] or
                     google_event['end_date'] != notion_item['end_date']
             ):
-                print(google_event)
-                google_client.delete_event(google_event['id'], googleCalendarId)
+                google_delete_id = google_client.delete_event(google_event['id'], googleCalendarId)
+                print(f"Notion event deleted from google calendar!🤬 Look at details below: "
+                      f"\n google event id: '{google_delete_id}'. "
+                      f"\n notion event id: '{notion_item['id']}'. ")
 
+print(' ')
+print(' ')
+
+#  add events from notion to google calendar
 for notion_item in notion_items:
     #  if notion event is new and its id not in any of Google events' description
     if notion_item['id'] not in [google_event['description'] for google_event in google_calendar_events]:
@@ -49,10 +56,12 @@ for notion_item in notion_items:
                                                           notion_item['id'],
                                                           notion_item['start_date'],
                                                           notion_item['end_date'])
+        google_create_id = google_client.create_event(google_event_dict, googleCalendarId)
         print(' ')
-        google_client.create_event(google_event_dict, googleCalendarId)
+        print(f"Notion event added to google calendar!👽 Look at details below: "
+              f"\n google event id: '{google_create_id}'. "
+              f"\n notion event id: '{notion_item['id']}'. ")
     else:
         print(' ')
-        print(f"Notion event id equals to google event description!😎 Look at details below: "
-              f"\n name: '{notion_item['name']}'"
+        print(f"Notion event id equals to google event description!😬 Look at details below: "
               f"\n id: '{notion_item['id']}'. ")

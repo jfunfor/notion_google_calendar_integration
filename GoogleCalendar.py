@@ -42,13 +42,16 @@ class GoogleCalendar(object):
         #  result list conversion
         result_list = []
         for event in events:
-            result_list.append({
-                'start_date': event['start']['dateTime'],
-                'end_date': event['end']['dateTime'],
-                'name': event['summary'],
-                'description': event['description'],
-                'id': event['id']
-            })
+            if "description" in event:
+                result_list.append({
+                    'start_date': event['start']['dateTime'],
+                    'end_date': event['end']['dateTime'],
+                    'name': event['summary'],
+                    'description': event['description'],
+                    'id': event['id']
+                })
+            else:
+                continue
         return result_list
 
     def create_event(self, event, calendarId):
